@@ -157,7 +157,7 @@ def main(args):
         final_markers[name]['cgg'] = {}
         for num in range(5,55,5):
             final_markers[name]['cgg'][num] = {}
-        final_markers[name]['cgg'][50] = CosGeneGate(adata_train, stg_genes=150, final_genes=50, lbm=0.01,
+        final_markers[name]['cgg'][50] = CosGeneGate(adata_train, stg_genes=100, final_genes=50, lbm=0.01,
                                               layer_key='logcounts', cluster_header='label', random_state=args.seed)
         for cl in set(adata_train.obs.label):
             gene_list = final_markers[name]['cgg'][50][cl]
