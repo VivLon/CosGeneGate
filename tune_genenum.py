@@ -106,7 +106,7 @@ def main(args):
         print('The wrong dataset setting!')
     
     #marker selection
-    final_markers = load_obj('/gpfs/gibbs/pi/zhao/wl545/results/'+args.dataset+'/tune_num/sub/markers'+str(args.seed)+'.pkl')
+    final_markers = {}
     methods = ['stg_prob', 'stg_num', 'nsf', 'cosg', 'scgf']
     for name in names:
         train_name = name+'_train'
