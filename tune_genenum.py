@@ -113,7 +113,7 @@ def main(args):
         test_name = name+'_test'
         adata_train = adatas[train_name].copy()
         adata_test = adatas[test_name].copy()
-        '''
+        
         final_markers[name] = {}
         ##STG
         final_markers[name]['stg_prob'], final_markers[name]['stg_num'] = {},{}
@@ -143,7 +143,7 @@ def main(args):
             gene_list = list(adata_train.uns['cosg']['names'][cl])
             for num in range(5,101,5):
                 final_markers[name]['cosg'][num][cl] = gene_list[:num]
-        '''
+        
                 
         ##scGeneFit
         final_markers[name]['scgf'] = {}
