@@ -4,3 +4,5 @@ numpy
 anndata
 torch
 lightning
+scikit-learn
+scipy

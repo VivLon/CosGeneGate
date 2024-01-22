@@ -1,7 +1,6 @@
 import pandas as pd
 import scanpy as sc
 import numpy as np
-#import stg
 import sklearn
 import scipy.stats
 import matplotlib.pyplot as plt 
@@ -11,7 +10,18 @@ import random
 from stg.stg import STG
 import cosg
 
-def mySTG(adata, cl, n_top_genes, lbm=0.01, layer_key='logcounts', cluster_header='label', n_trees=1000, n_jobs=-1, random_state=0):
+def mySTG(adata, cl, n_top_genes, lbm=0.01, layer_key='logcounts', cluster_header='label'):
+    '''
+        Input:
+            adata: scRNA-seq data in the anndata format.
+            cl: The cell-type label used for selection.
+            n_top_genes: number of genes selected in the first stage.
+            lbm: weight of the regularization for the feature sparsity in STG.
+            layer_key: the layer name we used in adata file.
+            cluster_header: the name of cell-type labels in the adata file.
+        Output:
+            makrer gene list.
+    '''
     df_dummies = pd.get_dummies(adata.obs[cluster_header])
     x_train = adata.layers[layer_key]
     y_train = df_dummies[cl].values
@@ -29,10 +39,23 @@ def mySTG(adata, cl, n_top_genes, lbm=0.01, layer_key='logcounts', cluster_heade
         top_rf_genes = res[res>0.5]
     return top_rf_genes
 
-def CosGeneGate(adata, stg_genes=30, final_genes=10, lbm=0.01, layer_key='logcounts', cluster_header='label', n_trees=1000, n_jobs=-1, random_state=0):
+def CosGeneGate(adata, stg_genes=30, final_genes=10, lbm=0.01, layer_key='logcounts', cluster_header='label', random_state=0):
+    '''
+        Input:
+            adata: scRNA-seq data in the anndata format.
+            stg_genes: number of genes selected in the first stage.
+            stg_genes: number of genes selected in the second stage.
+            lbm: weight of the regularization for the feature sparsity in STG.
+            cluster_label: the name of cell-type labels in the adata file.
+            random_state: the root of random numbers. 
+        Output:
+            makrer gene list.
+    '''
+
+
     marker_stg = []
     for cl in sorted(set(list(adata.obs[cluster_header]))):
-        genes = mySTG(adata, cl, n_top_genes=stg_genes, lbm=lbm, layer_key=layer_key, cluster_header=cluster_header, n_trees=n_trees, n_jobs=n_jobs, random_state=random_state).index.tolist()
+        genes = mySTG(adata, cl, n_top_genes=stg_genes, lbm=lbm, layer_key=layer_key, cluster_header=cluster_header, random_state=random_state).index.tolist()
         marker_stg.extend(genes)
     
     final_markers = {}
