@@ -1,0 +1,6 @@
+pandas
+scanpy
+numpy
+anndata
+torch
+lightning
