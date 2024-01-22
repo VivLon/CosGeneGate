@@ -1,0 +1,24 @@
+Package: CosGeneGateDeconv
+Type: Package
+Title: What the Package Does (Title Case)
+Version: 0.1.0
+Author: Zhiyuan Cao <zhiyuan.cao@yale.edu>
+Maintainer: The package maintainer <yourself@somewhere.net>
+Description: Generate optimal single cell reference for deconvolution based on CosGeneGate and appropriate number of marker genes.
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+Imports: 
+        SingleCellExperiment,
+        Matrix,
+        MCMCpack,
+	zellkonverter,
+	dplyr,
+	MuSiC,
+	hash,
+	SummarizedExperiment
+RoxygenNote: 7.2.3
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

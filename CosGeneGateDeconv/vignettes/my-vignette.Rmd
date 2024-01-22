@@ -1,0 +1,86 @@
+---
+title: "my-vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{my-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Installation
+```{r cars}
+# install devtools if necessary
+if (!"devtools" %in% rownames(installed.packages())) {
+  install.packages('devtools')
+}
+
+# install the CosGeneGateDeconv package
+# if (!"MuSiC" %in% rownames(installed.packages())) {
+#   devtools::install_github('xuranw/MuSiC')
+# }
+
+# Load
+library(CosGeneGateDeconv)
+library(zellkonverter)
+library(SummarizedExperiment)
+library(MuSiC)
+```
+
+
+
+## Load the dataset
+```{r}
+# Singe cell 
+sc.ref <- readH5AD('data/three_cell_line.h5ad')
+names(assays(sc.ref)) <- "counts"
+# Real-bulk
+real.bulk <- as.matrix(read.table('data/three_cell_realbulk.txt', header=TRUE, sep="\t",
+                                    row.names=1,
+                                    as.is=TRUE))
+# Ground truth
+groundtruth <- read.csv('data/three_cell_gt.txt', sep='\t', check.names=FALSE)
+groundtruth <- groundtruth[, !(names(groundtruth) %in% c('X'))]
+```
+
+
+## Get the tuned single cell reference by realbulk mode
+```{r}
+sc.ref.new <- deconvolution_realbulk_mode('data/three_cell_line.h5ad', 
+                                          'data/three_cell_realbulk.txt', 
+                                          'data/three_cell_gt.txt', 
+                                          'data/three_cell_marker.txt',
+                                          index=c(45, 50), 
+                                          plot_line=TRUE)
+```
+
+```{r}
+# Compare with original singel cell profile
+deconv_new <- music_prop(bulk.mtx = real.bulk,
+                        sc.sce = sc.ref.new,
+                        clusters = 'label',
+                        samples = 'sample_id')
+
+deconv_old <- music_prop(bulk.mtx = real.bulk,
+                        sc.sce = sc.ref,
+                        clusters = 'label',
+                        samples = 'sample_id')
+```
+
+```{r}
+Calculate_RMSE <- function(decon, gt) {
+  result <- c()
+  len <- dim(gt)[1]
+  gt <- gt[,colnames(decon)]
+  for (i in 1:len) {
+    result <- c(result,
+                sqrt(sum((decon[i,] - gt[i,])**2)/len))
+  }
+  return(result)
+}
+
+print(Calculate_RMSE(deconv_new$Est.prop.weighted, groundtruth))
+print(Calculate_RMSE(deconv_old$Est.prop.weighted, groundtruth))
+```
+
+
+

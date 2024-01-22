@@ -1,0 +1,2 @@
+	MCF7	MDA-MB468	NormalFibroblast
+0	0.3	0.6	0.1
