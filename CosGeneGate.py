@@ -20,7 +20,7 @@ def mySTG(adata, cl, n_top_genes, lbm=0.01, layer_key='logcounts', cluster_heade
             layer_key: the layer name we used in adata file.
             cluster_header: the name of cell-type labels in the adata file.
         Output:
-            makrer gene list.
+            marker gene list.
     '''
     df_dummies = pd.get_dummies(adata.obs[cluster_header])
     x_train = adata.layers[layer_key]
@@ -44,12 +44,12 @@ def CosGeneGate(adata, stg_genes=30, final_genes=10, lbm=0.01, layer_key='logcou
         Input:
             adata: scRNA-seq data in the anndata format.
             stg_genes: number of genes selected in the first stage.
-            stg_genes: number of genes selected in the second stage.
+            final_genes: number of genes selected in the second stage.
             lbm: weight of the regularization for the feature sparsity in STG.
-            cluster_label: the name of cell-type labels in the adata file.
+            cluster_header: the name of cell-type labels in the adata file.
             random_state: the root of random numbers. 
         Output:
-            makrer gene list.
+            marker gene list.
     '''
 
 
