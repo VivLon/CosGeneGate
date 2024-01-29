@@ -24,6 +24,16 @@ To install the R environment for the deconvolution analysis, please use:
 install.packages("CosGeneGateDeconv")
 ```
 
+or
+
+```
+install.packages('devtools')
+
+devtools::install_github('VivLon/CosGeneGate/tree/main/CosGeneGateDeconv')
+
+library(CosGeneGateDeconv)
+```
+
 # Tutorials
 
 Please use the file **Tutorial_marker_selection.ipynb** as a tutorial for running our algorithm. The demo dataset can be found in [this folder](https://drive.google.com/drive/folders/1kEK6MPGejnpXMIthULP66ytE4teLgKx9?usp=drive_link).
