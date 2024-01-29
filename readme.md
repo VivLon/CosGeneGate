@@ -28,9 +28,7 @@ or
 
 ```
 install.packages('devtools')
-
 devtools::install_github('VivLon/CosGeneGate/tree/main/CosGeneGateDeconv')
-
 library(CosGeneGateDeconv)
 ```
 
