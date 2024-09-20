@@ -28,7 +28,7 @@ def calculate_annot_scores(adata_train, adata_test, marker_list):
     score_table = {'acc':[],'macro_rec':[],'macro_pre':[],'macro_f1':[],'weighted_pre':[],'weighted_rec':[],
                        'weighted_f1':[],'label_ari':[], 'label_nmi':[]}
     trainadata = adata_train[:, list(set(marker_list))].copy()
-    testadata = adata_train[:, list(set(marker_list))].copy()
+    testadata = adata_test[:, list(set(marker_list))].copy()
     
     for t in range(5,15):
         model = KNeighborsClassifier(n_neighbors=t)
