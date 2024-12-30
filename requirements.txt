@@ -6,3 +6,7 @@ torch
 lightning
 scikit-learn
 scipy
+lifelines
+scGeneFit @ git+https://github.com/solevillar/scGeneFitpython.git
+cosg
+scib-metrics
