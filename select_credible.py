@@ -1,10 +1,10 @@
-from CSCORE_IRLS_new import CSCORE_IRLS
+from .CSCORE_IRLS_new import CSCORE_IRLS
 from statsmodels.stats.multitest import multipletests
 import pandas as pd
 import scanpy as sc
 import numpy as np
 import anndata
-from utils import *
+from .utils import *
 
 def get_all_markers(markers):
     cluster_list = markers[0].keys()
