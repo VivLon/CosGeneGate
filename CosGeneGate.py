@@ -10,7 +10,7 @@ import random
 from stg.stg import STG
 import cosg
 
-def mySTG(adata, cl, n_top_genes, lbm=0.01, layer_key='logcounts', cluster_header='label'):
+def mySTG(adata, cl, n_top_genes, lbm=0.01, layer_key='logcounts', cluster_header='label',random_state=0):
     '''
         Input:
             adata: scRNA-seq data in the anndata format.

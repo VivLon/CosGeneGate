@@ -11,7 +11,7 @@ import itertools
 from stg.stg import STG
 from scGeneFit.functions import *
 from CosGeneGate import *
-from NSForest import *
+from nsforest import *
 from sklearn.metrics import classification_report
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import adjusted_rand_score, normalized_mutual_info_score
