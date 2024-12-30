@@ -13,7 +13,7 @@ pip install -r requirements.txt
 To install stg, please use our forked mode from [this link](https://github.com/runopti/stg):
 
 ```
-git clone https://github.com/HelloWorldLTY/stg_project.git
+git clone https://github.com/HelloWorldLTY/stg.git
 cd stg/python
 pip install -e ./
 ```
