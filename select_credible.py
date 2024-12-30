@@ -6,6 +6,18 @@ import numpy as np
 import anndata
 from .utils import *
 
+def change_sparsertiy(adata, keylist):
+    for item in keylist:
+        if item in list(adata.layers.keys()):
+            if scipy.sparse.issparse(adata.layers[item]):
+                adata.layers[item] = adata.layers[item].todense()
+            else:
+                continue
+            adata.layers[item] = np.asarray(adata.layers[item])
+        else:
+            continue
+    return adata
+
 def get_all_markers(markers):
     cluster_list = markers[0].keys()
     seeds = len(list(markers.keys()))
