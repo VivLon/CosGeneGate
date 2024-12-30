@@ -10,7 +10,7 @@ import random
 from stg.stg import STG
 import cosg
 
-def mySTG(adata, cl, n_top_genes, lbm=0.01, layer_key='logcounts', cluster_header='label'):
+def mySTG(adata, cl, n_top_genes, lbm=0.01, layer_key='logcounts', cluster_header='label', random_state=0):
     '''
         Input:
             adata: scRNA-seq data in the anndata format.
@@ -27,7 +27,7 @@ def mySTG(adata, cl, n_top_genes, lbm=0.01, layer_key='logcounts', cluster_heade
     y_train = df_dummies[cl].values
 
     rf_clf = STG(task_type='classification',input_dim = adata.shape[1], output_dim=2, hidden_dims=[60, 20, 10], activation='tanh',
-        optimizer='SGD', learning_rate=0.1, batch_size=adata.shape[0], feature_selection=True, sigma=0.5, lam=lbm, random_state=0, device="cuda") 
+        optimizer='SGD', learning_rate=0.1, batch_size=adata.shape[0], feature_selection=True, sigma=0.5, lam=lbm, random_state=random_state, device="cuda") 
     rf_clf.fit(x_train, y_train, nr_epochs=2000, valid_X=x_train, valid_y=y_train, print_interval=1000)
 
     ## get feature importance and rank/subset top genes
