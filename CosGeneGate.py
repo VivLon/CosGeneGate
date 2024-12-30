@@ -10,6 +10,18 @@ import random
 from stg.stg import STG
 import cosg
 
+import platform
+
+version = platform.python_version()
+
+if version >= "3.10":
+    import collections 
+    collections.Sequence = collections.abc.Sequence
+    collections.Set = collections.abc.Set
+    collections.Mapping = collections.abc.Mapping
+
+    
+
 def mySTG(adata, cl, n_top_genes, lbm=0.01, layer_key='logcounts', cluster_header='label',random_state=0):
     '''
         Input:
