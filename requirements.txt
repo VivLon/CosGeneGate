@@ -7,6 +7,6 @@ lightning
 scikit-learn
 scipy
 lifelines
-scGeneFit @ git+https://github.com/solevillar/scGeneFitpython.git
+scGeneFit @ git+https://github.com/solevillar/scGeneFit-python.git
 cosg
 scib-metrics
