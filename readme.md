@@ -47,3 +47,16 @@ We refer the codes from [STG](https://github.com/runopti/stg), [CSCORE](https://
 Thanks for their great work!
 
 # Citation
+
+```
+@article{liu2025cosgenegate,
+  title={CosGeneGate selects multi-functional and credible biomarkers for single-cell analysis},
+  author={Liu, Tianyu and Long, Wenxin and Cao, Zhiyuan and Wang, Yuge and He, Chuan Hua and Zhang, Le and Strittmatter, Stephen M and Zhao, Hongyu},
+  journal={Briefings in Bioinformatics},
+  volume={26},
+  number={1},
+  pages={bbae626},
+  year={2025},
+  publisher={Oxford University Press}
+}
+```
